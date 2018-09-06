@@ -646,7 +646,7 @@ static void marshall_blobs_descriptor(
 static inline uint32_t get_null_bit_position(uint32_t null_bit);
 
 // evaluate the int value of an item
-static longlong item_val_int(Item* item) {
+static long long item_val_int(Item* item) {
     Item::Type t = item->type();
     if (t == Item::INSERT_VALUE_ITEM) {
         Item_insert_value* value_item = static_cast<Item_insert_value*>(item);
@@ -679,7 +679,7 @@ static void marshall_update(
     void* v_ptr = NULL;
     uint32_t v_length;
     uint32_t update_operation;
-    longlong v_ll; 
+    long long v_ll;
     String v_str;
 
     switch (lhs_field->type()) {

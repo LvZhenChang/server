@@ -620,7 +620,7 @@ static ulonglong retrieve_auto_increment(uint16 type, uint32 offset,const uchar 
 {
     const uchar *key;     /* Key */
     ulonglong   unsigned_autoinc = 0;  /* Unsigned auto-increment */
-    longlong      signed_autoinc = 0;  /* Signed auto-increment */
+    long long      signed_autoinc = 0;  /* Signed auto-increment */
     enum { unsigned_type, signed_type } autoinc_type;
     float float_tmp;   /* Temporary variable */
     double double_tmp; /* Temporary variable */
@@ -632,7 +632,7 @@ static ulonglong retrieve_auto_increment(uint16 type, uint32 offset,const uchar 
 
     switch (type) {
     case HA_KEYTYPE_INT8:
-        signed_autoinc   = (longlong) *(char*)key;
+        signed_autoinc   = (long long) *(char*)key;
         autoinc_type     = signed_type;
         break;
 
@@ -641,7 +641,7 @@ static ulonglong retrieve_auto_increment(uint16 type, uint32 offset,const uchar 
         break;
 
     case HA_KEYTYPE_SHORT_INT:
-        signed_autoinc   = (longlong) sint2korr(key);
+        signed_autoinc   = (long long) sint2korr(key);
         autoinc_type     = signed_type;
         break;
 
@@ -650,7 +650,7 @@ static ulonglong retrieve_auto_increment(uint16 type, uint32 offset,const uchar 
         break;
 
     case HA_KEYTYPE_LONG_INT:
-        signed_autoinc   = (longlong) sint4korr(key);
+        signed_autoinc   = (long long) sint4korr(key);
         autoinc_type     = signed_type;
         break;
 
@@ -659,7 +659,7 @@ static ulonglong retrieve_auto_increment(uint16 type, uint32 offset,const uchar 
         break;
 
     case HA_KEYTYPE_INT24:
-        signed_autoinc   = (longlong) sint3korr(key);
+        signed_autoinc   = (long long) sint3korr(key);
         autoinc_type     = signed_type;
         break;
 
@@ -680,13 +680,13 @@ static ulonglong retrieve_auto_increment(uint16 type, uint32 offset,const uchar 
        compatibility */
     case HA_KEYTYPE_FLOAT:                      
         float4get(float_tmp, key);  /* Note: float4get is a macro */
-        signed_autoinc   = (longlong) float_tmp;
+        signed_autoinc   = (long long) float_tmp;
         autoinc_type     = signed_type;
         break;
 
     case HA_KEYTYPE_DOUBLE:
         float8get(double_tmp, key); /* Note: float8get is a macro */
-        signed_autoinc   = (longlong) double_tmp;
+        signed_autoinc   = (long long) double_tmp;
         autoinc_type     = signed_type;
         break;
 
